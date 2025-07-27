@@ -1,0 +1,21 @@
+[package]
+name = "actix_app_test"
+version = "1.85.0"
+edition = "2024"
+
+[dependencies]
+actix-web = "4"
+tokio = { version = "1.47.0", features = ["full"] }
+jemallocator = "0.5"
+jemalloc-ctl = "0.5.4"
+jemalloc-sys = "0.5"
+libc = "0.2"
+async-trait = "0.1"
+env_logger = "0.11.8"
+log = "0.4.27"
+
+[profile.release]
+opt-level = "z"
+codegen-units = 1
+lto = true
+panic = "abort"
