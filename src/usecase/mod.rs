@@ -24,3 +24,9 @@ impl MessageUsecase for MessageUsecaseImpl {
         self.repo.fetch_message().await
     }
 }
+
+impl Drop for MessageUsecaseImpl {
+    fn drop(&mut self) {
+        println!("🗑️ MessageUsecaseImpl has been dropped");
+    }
+}

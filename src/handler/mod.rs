@@ -9,6 +9,15 @@ pub fn init_routes(cfg: &mut web::ServiceConfig) {
 }
 
 pub async fn get_message(usecase: web::Data<Arc<dyn MessageUsecase>>) -> impl Responder {
+    // Hitung strong dan weak ref count
+    let strong = Arc::strong_count(&usecase);
+    let weak = Arc::weak_count(&usecase);
+
+    println!(
+        "🔗 Arc ref count: strong = {}, weak = {}",
+        strong, weak
+    );
+
     let msg = usecase.get_message().await;
     HttpResponse::Ok().body(msg)
 }
